@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LaborPulse — Christopher Mathews</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <div class="status-bar">
+    <div class="status-bar-inner">
+      <span class="pulse-dot"></span>
+      <span>SYSTEM ACTIVE</span>
+      <span class="status-sep">/</span>
+      <span id="live-clock">--:--:--</span>
+      <span class="status-sep">/</span>
+      <span>CASE 04 OF 04</span>
+    </div>
+  </div>
+
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-brand">
+        <span class="nav-logo">Christopher Mathews</span>
+        <span class="nav-tag">// STRATEGIC INTELLIGENCE</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <a href="../assets/resume.pdf" class="nav-resume">Resume</a>
+    </div>
+  </header>
+
+  <section class="project-hero">
+    <div class="container">
+      <a href="../index.html#projects" class="back-link">← All case files</a>
+      <div class="file-line">
+        <span class="pulse-dot" style="background:var(--teal);"></span>
+        <span>CASE 04 / LABORPULSE</span>
+      </div>
+      <div class="project-meta">
+        <span class="tag tag-teal">Data Engineering</span>
+        <span class="tag tag-teal">dbt / DuckDB</span>
+        <span class="tag tag-teal">Labor Economics</span>
+      </div>
+      <h1>LaborPulse — The Raise That Wasn't</h1>
+      <p class="lede">A self-built data pipeline pulling 15 government labor-market series and live federal job postings, purpose-built to answer one question the headline numbers won't: is the analyst/BI/intelligence job market actually as bad as it feels — nationally, in Massachusetts, and in Boston specifically?</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="feed">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 01 — NOMINAL VS. REAL WAGE GROWTH</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/laborpulse-wages.jpg" alt="Line chart comparing nominal average hourly earnings growth against inflation-adjusted real wage growth, showing a sharp divergence starting in 2021" />
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box highlight"><div class="label">Nominal vs. Real Wage Growth (YoY)</div><div class="value" style="font-size:20px;">+3.3% vs. ~0%</div></div>
+        <div class="stat-box"><div class="label">BLS Series Pulled</div><div class="value">15</div></div>
+        <div class="stat-box"><div class="label">Live Federal Postings Tracked</div><div class="value">655+</div></div>
+      </div>
+
+      <div class="scqa">
+        <div class="scqa-block situation">
+          <p class="scqa-label">Situation</p>
+          <p>Every headline labor-market number — unemployment steady, wages up 3% — gets read as a single verdict on "the job market." For anyone actually in that market, the real question is narrower and more personal: what's happening in my occupation, my region, right now — not the national average six weeks late.</p>
+        </div>
+
+        <div class="scqa-block complication">
+          <p class="scqa-label">Complication</p>
+          <p>The standard numbers hide exactly the signal that matters. Nominal wage growth ignores inflation. Sector-wide aggregates ("Professional and Business Services") bury 30%+ wage spread between the occupations inside them. National figures smooth over real regional divergence. And official job-openings statistics are a lagging government estimate, not a read on what's actually being posted this week.</p>
+        </div>
+
+        <div class="scqa-block question">
+          <p class="scqa-label">Question</p>
+          <p>Could a fully free, self-hosted pipeline — no paid BI license, no cloud spend — pull enough government and live-postings data to surface what the aggregate numbers miss, specifically for the Boston-area analyst/BI/intelligence market?</p>
+        </div>
+
+        <div class="scqa-block answer">
+          <p class="scqa-label">Answer</p>
+          <p>Built as a three-layer pipeline, entirely on free and open-source tools:</p>
+          <ul style="color:var(--ink-soft); padding-left:20px; margin:0 0 16px;">
+            <li><b>Ingestion:</b> dlt pipelines pulling 15 BLS series — unemployment, employment, quits and layoffs rates, wages, CPI, Massachusetts and Boston-metro geography, and a CES industry-breadth index — plus live USAJobs federal postings, appended daily rather than overwritten so real posting-volume trends accumulate over time.</li>
+            <li><b>Transformation:</b> dbt Core models over DuckDB, test-driven throughout — the test suite caught a real data gap on its first run (a footnoted government-shutdown month) and now distinguishes documented suppression from a genuine pipeline defect automatically. Nominal wages are deflated by CPI into real, constant-dollar terms; every series ID was empirically verified against the live BLS API and cross-checked against FRED rather than trusted on construction alone.</li>
+            <li><b>Intelligence layer:</b> a Metabase dashboard built through its API for precise control over every chart, comparison-aware KPIs, and one consistent color language throughout — surfacing the real-vs-nominal wage gap, voluntary-vs-involuntary separation signals, occupation-level wage spread, and the Boston/Massachusetts-vs-national divergence in one coherent read.</li>
+          </ul>
+          <div class="callout">
+            <b>The finding that mattered most wasn't the expected one:</b> quits are currently running nearly double the layoffs rate — a genuine, non-obvious signal that most separations right now are voluntary, cutting against a pure distress narrative. A dashboard built to confirm a bad-market story would have missed it; one built to find the real signal didn't.
+          </div>
+        </div>
+      </div>
+
+      <div class="feed" style="margin-top:8px;">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 02 — CONFIDENCE VS. DISTRESS, AND DOES GEOGRAPHY MATTER</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/laborpulse-signals.jpg" alt="Two line charts: quits rate versus layoffs rate over time, and national versus Massachusetts versus Boston metro unemployment rate over time" />
+        </div>
+        <p class="feed-caption">Quits and layoffs are both "separations" in the headline number but mean opposite things. Massachusetts and Boston metro both run slightly hotter than the national rate — a real, modest local gap the national figure hides.</p>
+      </div>
+
+      <div class="feed">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 03 — WHO'S ACTUALLY HIRING, AND FOR HOW MUCH</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/laborpulse-occupations.jpg" alt="Range plot showing the 25th-75th percentile wage spread and median for Management Analysts, Financial Analysts, Operations Research Analysts, and Market Research Analysts" />
+        </div>
+        <p class="feed-caption">Occupational Employment and Wage Statistics by detailed SOC code, not sector average — Financial and Management Analysts cluster near $99K median, roughly 30% above Market Research Analysts, despite sharing the same sector bucket.</p>
+      </div>
+
+      <p class="eyebrow" style="margin-top:12px;">Built with</p>
+      <div class="tech-list">
+        <span class="skill-chip">dlt</span>
+        <span class="skill-chip">DuckDB</span>
+        <span class="skill-chip">dbt Core</span>
+        <span class="skill-chip">Metabase</span>
+        <span class="skill-chip">BLS &amp; USAJobs APIs</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-note">
+        <span>Christopher Mathews · Peabody, MA</span>
+        <span class="classification">STATUS: PUBLIC</span>
+      </div>
+      <nav class="footer-links">
+        <a href="mailto:cmathews928@gmail.com">Email</a>
+        <a href="https://github.com/cmat928" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
