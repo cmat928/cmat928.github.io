@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EconPulse — Christopher Mathews</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Christopher Mathews</a>
+      <nav class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <a href="../assets/resume.pdf" class="nav-resume">Resume</a>
+    </div>
+  </header>
+
+  <section class="project-hero">
+    <div class="container">
+      <a href="../index.html#projects" class="back-link">← All projects</a>
+      <div class="project-meta">
+        <span class="tag tag-teal">Econometrics</span>
+        <span class="tag tag-teal">Sentiment Analysis</span>
+        <span class="tag tag-teal">FastAPI</span>
+      </div>
+      <h1>EconPulse — From Ten Models to One Stance</h1>
+      <p class="lede">A full-stack platform that reads the macro backdrop, compares what companies say about themselves against what the news says about them, and synthesizes all of it into a single CIO-style stance — not another dashboard of unconnected charts.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="stat-row">
+        <div class="stat-box highlight"><div class="label">Stress Signals Tracked</div><div class="value">5</div></div>
+        <div class="stat-box"><div class="label">Stance Classifications</div><div class="value" style="font-size:16px;">Constructive / Watchful / Defensive</div></div>
+        <div class="stat-box"><div class="label">Sentiment Comparison</div><div class="value" style="font-size:16px;">SEC Filings vs. News</div></div>
+      </div>
+
+      <div class="scqa">
+        <div class="scqa-block situation">
+          <p class="scqa-label">Situation</p>
+          <p>Reading markets well means combining a macro view with company-specific signal — but they usually come from disconnected sources: a macro strategist's take on the cycle, and a separate equity analyst's take on individual names, never reconciled into one coherent stance.</p>
+        </div>
+
+        <div class="scqa-block complication">
+          <p class="scqa-label">Complication</p>
+          <p>Even where the underlying models exist — recession probability, regime detection, factor sensitivity — most tools stop at the chart and leave synthesis to the reader. And a genuinely useful read needs a comparison that isn't standard in most tools at all: what a company says about itself in its own regulatory filings, against what the external news narrative says about it.</p>
+        </div>
+
+        <div class="scqa-block question">
+          <p class="scqa-label">Question</p>
+          <p>Can one platform combine macro regime detection, disclosure-vs-narrative sentiment, and factor-based equity sensitivity — then actually synthesize all of it into one decision-ready stance, instead of a wall of separate charts?</p>
+        </div>
+
+        <div class="scqa-block answer">
+          <p class="scqa-label">Answer</p>
+          <p>Built as a FastAPI platform across three layers:</p>
+          <ul style="color:var(--ink-soft); padding-left:20px; margin:0 0 16px;">
+            <li><b>Macro layer:</b> Sahm Rule, a yield-curve recession probit, real Fed Funds Rate against the Taylor Rule benchmark, Phillips Curve, and a composite economic health score.</li>
+            <li><b>Company layer:</b> factor-beta, regime-conditional regressions across the Magnificent 7 plus tracked funds (15 years of price history per ticker), and a sentiment pipeline comparing each company's own SEC 10-Q MD&amp;A language against external news coverage of the same company.</li>
+            <li><b>Synthesis layer:</b> a rules-based strategic brief that counts how many of five independent stress signals are flashing at once (Sahm Rule, yield-curve inversion, recession probability, VIX regime, credit spreads) and classifies an explicit stance — <i>Constructive</i>, <i>Balanced/Watchful</i>, or <i>Defensive</i> — with the underlying evidence laid out bullet by bullet.</li>
+          </ul>
+          <div class="callout">
+            <b>Deliberately template-synthesized, not LLM-generated:</b> the executive brief is built from a fixed set of rules over numbers already computed elsewhere in the platform — every claim in it traces back to a specific, inspectable model output, not a black box.
+          </div>
+        </div>
+      </div>
+
+      <p class="eyebrow" style="margin-top:12px;">Built with</p>
+      <div class="tech-list">
+        <span class="skill-chip">Python / FastAPI</span>
+        <span class="skill-chip">FRED API</span>
+        <span class="skill-chip">SEC EDGAR</span>
+        <span class="skill-chip">statsmodels</span>
+        <span class="skill-chip">Factor regression</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-note">Christopher Mathews · Peabody, MA</p>
+      <nav class="footer-links">
+        <a href="mailto:cmathews928@gmail.com">Email</a>
+        <a href="https://github.com/cmat928" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

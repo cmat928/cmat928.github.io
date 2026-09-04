@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tournament Fishing Intelligence Platform — Christopher Mathews</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Christopher Mathews</a>
+      <nav class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <a href="../assets/resume.pdf" class="nav-resume">Resume</a>
+    </div>
+  </header>
+
+  <section class="project-hero">
+    <div class="container">
+      <a href="../index.html#projects" class="back-link">← All projects</a>
+      <div class="project-meta">
+        <span class="tag tag-rust">Data Product</span>
+        <span class="tag tag-rust">Systems Design</span>
+        <span class="tag tag-rust">Privacy Architecture</span>
+      </div>
+      <h1>Tournament Fishing Competitive Intelligence Platform</h1>
+      <p class="lede">A solo-founder SaaS product that predicts where fish will be before a tournament starts, then gets smarter automatically after every event — with a privacy architecture designed in from day one, not bolted on after.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="stat-row">
+        <div class="stat-box"><div class="label">Target Lakes (Phase 1)</div><div class="value">5</div></div>
+        <div class="stat-box highlight"><div class="label">Revenue Target</div><div class="value">$5,000/mo</div></div>
+        <div class="stat-box"><div class="label">Subscribers to Hit It</div><div class="value">130</div></div>
+      </div>
+
+      <div class="scqa">
+        <div class="scqa-block situation">
+          <p class="scqa-label">Situation</p>
+          <p>Competitive tournament anglers make high-stakes, high-cost decisions — where to fish, what structure to target — largely on instinct and word of mouth, even though the environmental data that actually drives fish behavior (water temperature, barometric pressure, moon phase, lake levels) is public and free.</p>
+        </div>
+
+        <div class="scqa-block complication">
+          <p class="scqa-label">Complication</p>
+          <p>Any product that asks anglers to be GPS-tracked before it's proven predictive value is asking for trust it hasn't earned. And most "gets smarter over time" products make a subtle modeling mistake: treating a poor tournament finish as evidence that "fish weren't there" — when a bad finish is usually about execution, not location, and good anglers actively fish decoy spots to mislead competitors.</p>
+        </div>
+
+        <div class="scqa-block question">
+          <p class="scqa-label">Question</p>
+          <p>Can a prediction product prove its value with zero user effort and zero tracking first — and only ask for opt-in data once trust is established — while still building a model that genuinely improves over time?</p>
+        </div>
+
+        <div class="scqa-block answer">
+          <p class="scqa-label">Answer</p>
+          <p>Designed as a phased product, not just a model:</p>
+          <ul style="color:var(--ink-soft); padding-left:20px; margin:0 0 16px;">
+            <li><b>Free tier, zero tracking:</b> automated daily pulls from NOAA, USGS, and moon-phase APIs feed an XGBoost model that ships a pre-tournament report — no manual input, no GPS, no cost.</li>
+            <li><b>Pro tier, opt-in only, introduced later:</b> once free reports have a track record, anglers can opt into passive, anonymized GPS tracking in exchange for higher-resolution predictions.</li>
+            <li><b>Confidence-weighted correction, not naive inversion:</b> a bad finish is down-weighted toward zero signal rather than treated as proof fish weren't there — and sessions with scattered, low-confidence movement get flagged and excluded rather than trusted.</li>
+          </ul>
+          <div class="callout">
+            <b>Privacy architecture, not an afterthought:</b> raw GPS is anonymized at ingestion — before it's queryable by anything else in the system — via 100m geohash clustering with identity stripped. Identified raw tracks live in a separate, encrypted, access-restricted table used only to recompute clustering if the algorithm changes, and are purged after 12 months.
+          </div>
+          <p>Revenue model: $39/month individual, $149/month for a 6-angler team tier — 130 subscribers hits the $5,000/month milestone.</p>
+        </div>
+      </div>
+
+      <p class="eyebrow" style="margin-top:12px;">Built with</p>
+      <div class="tech-list">
+        <span class="skill-chip">Python / FastAPI</span>
+        <span class="skill-chip">XGBoost</span>
+        <span class="skill-chip">Supabase (Postgres)</span>
+        <span class="skill-chip">GitHub Actions</span>
+        <span class="skill-chip">NOAA / USGS APIs</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-note">Christopher Mathews · Peabody, MA</p>
+      <nav class="footer-links">
+        <a href="mailto:cmathews928@gmail.com">Email</a>
+        <a href="https://github.com/cmat928" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

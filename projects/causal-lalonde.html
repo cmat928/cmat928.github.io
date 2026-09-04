@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why the Naive Comparison Lied — Christopher Mathews</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Christopher Mathews</a>
+      <nav class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <a href="../assets/resume.pdf" class="nav-resume">Resume</a>
+    </div>
+  </header>
+
+  <section class="project-hero">
+    <div class="container">
+      <a href="../index.html#projects" class="back-link">← All projects</a>
+      <div class="project-meta">
+        <span class="tag tag-teal">Causal Inference</span>
+        <span class="tag tag-teal">Diff-in-Differences</span>
+        <span class="tag tag-teal">Python / Pandas</span>
+      </div>
+      <h1>Why the Naive Comparison Lied</h1>
+      <p class="lede">A real 1970s job-training experiment, re-analyzed to show how a plausible-looking comparison group can flip the sign of a program's effect entirely — and exactly how far diff-in-differences can, and can't, fix it.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="stat-row">
+        <div class="stat-box warn"><div class="label">Naive Estimate</div><div class="value">-$8,498</div></div>
+        <div class="stat-box"><div class="label">True Effect (Experiment)</div><div class="value">+$1,794</div></div>
+        <div class="stat-box highlight"><div class="label">Diff-in-Differences</div><div class="value">+$3,621</div></div>
+      </div>
+
+      <div class="scqa">
+        <div class="scqa-block situation">
+          <p class="scqa-label">Situation</p>
+          <p>The National Supported Work (NSW) Demonstration was a real randomized job-training program for structurally disadvantaged workers — long-term unemployed, ex-offenders, welfare recipients. Because assignment to the program was random, comparing treated vs. control earnings within the experiment itself gives a valid causal estimate: participants earned <b>$1,794 more</b> in 1978 than they otherwise would have.</p>
+        </div>
+
+        <div class="scqa-block complication">
+          <p class="scqa-label">Complication</p>
+          <p>Most real analyses don't get a randomized control group. The standard workaround is comparing against "similar-looking" people from public survey data instead. Substituting the Current Population Survey (CPS) as a stand-in control for this exact program doesn't just add noise — it <b>flips the sign of the result entirely</b>: the naive comparison says the program decreased earnings by $8,498.</p>
+          <p>A covariate check shows exactly why. These weren't two similar groups with different treatment status — they were two different populations:</p>
+          <div class="callout">
+            <b>84% Black vs. 7%</b> · <b>17% married vs. 71%</b> · <b>77% without a high school degree vs. 30%</b> · 8 years younger on average. Every one of these predicts earnings on its own, with nothing to do with job training.
+          </div>
+        </div>
+
+        <div class="scqa-block question">
+          <p class="scqa-label">Question</p>
+          <p>If a real control group isn't available, can differencing out each group's own pre-treatment earnings trend — diff-in-differences — recover something closer to the true effect than a raw level comparison?</p>
+        </div>
+
+        <div class="scqa-block answer">
+          <p class="scqa-label">Answer</p>
+          <p>Partially. Comparing the <i>change</i> in earnings from 1975 to 1978, rather than the 1978 level alone, produces a $3,621 estimate — <b>4x closer</b> to the true $1,794 effect than the naive comparison, and the correct sign.</p>
+          <p>But it still overstates the effect by roughly 2x, and the honest finding is <i>why</i>: the pattern is consistent with <b>Ashenfelter's dip</b> — people tend to enroll in job training right after an atypical earnings low, which partially reverts on its own regardless of the program. That inflates the treated group's "before-to-after" change independent of any real effect. The right conclusion isn't "diff-in-differences worked" — it's a specific, defensible account of how far it closes the gap and why it doesn't close all of it.</p>
+        </div>
+      </div>
+
+      <p class="eyebrow" style="margin-top:12px;">Built with</p>
+      <div class="tech-list">
+        <span class="skill-chip">Python</span>
+        <span class="skill-chip">Pandas</span>
+        <span class="skill-chip">National Supported Work experimental data</span>
+        <span class="skill-chip">CPS comparison data</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-note">Christopher Mathews · Peabody, MA</p>
+      <nav class="footer-links">
+        <a href="mailto:cmathews928@gmail.com">Email</a>
+        <a href="https://github.com/cmat928" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
