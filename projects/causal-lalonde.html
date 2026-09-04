@@ -69,22 +69,22 @@
           <p>Partially. Comparing the <i>change</i> in earnings from 1975 to 1978, rather than the 1978 level alone, produces a $3,621 estimate — <b>4x closer</b> to the true $1,794 effect than the naive comparison, and the correct sign.</p>
           <p>But it still overstates the effect by roughly 2x, and the honest finding is <i>why</i>: the pattern is consistent with <b>Ashenfelter's dip</b> — people tend to enroll in job training right after an atypical earnings low, which partially reverts on its own regardless of the program. That inflates the treated group's "before-to-after" change independent of any real effect. The right conclusion isn't "diff-in-differences worked" — it's a specific, defensible account of how far it closes the gap and why it doesn't close all of it.</p>
 
-          <svg viewBox="0 0 700 200" role="img" aria-label="Bar chart: naive comparison estimates negative $8,498, diff-in-differences estimates positive $3,621, against a true effect reference line of positive $1,794" style="width:100%; height:auto; margin-top:8px;">
-            <line x1="170" y1="40" x2="680" y2="40" stroke="var(--rule)" stroke-width="1"/>
-            <line x1="170" y1="170" x2="680" y2="170" stroke="var(--rule)" stroke-width="1"/>
+          <svg viewBox="0 0 700 210" role="img" aria-label="Bar chart: naive comparison estimates negative $8,498, diff-in-differences estimates positive $3,621, against a true effect reference line of positive $1,794" style="width:100%; height:auto; margin-top:8px; overflow:visible;">
+            <line x1="170" y1="46" x2="680" y2="46" stroke="var(--rule)" stroke-width="1"/>
+            <line x1="170" y1="178" x2="680" y2="178" stroke="var(--rule)" stroke-width="1"/>
 
-            <line x1="587.1" y1="30" x2="587.1" y2="170" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3,4"/>
-            <text x="587.1" y="20" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">True effect · +$1,794</text>
+            <line x1="587.1" y1="36" x2="587.1" y2="178" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3,4"/>
+            <text x="587.1" y="24" text-anchor="middle" font-family="var(--font-mono)" font-size="12" fill="var(--ink-soft)">True effect · +$1,794</text>
 
-            <line x1="517.7" y1="40" x2="517.7" y2="170" stroke="var(--rule-strong)" stroke-width="1.5"/>
+            <line x1="517.7" y1="46" x2="517.7" y2="178" stroke="var(--rule-strong)" stroke-width="1.5"/>
 
-            <text x="160" y="80" text-anchor="end" font-family="var(--font-body)" font-size="13" fill="var(--ink-soft)">Naive Comparison</text>
-            <rect x="189.4" y="60" width="328.3" height="40" rx="6" fill="var(--rust)"/>
-            <text x="184" y="85" text-anchor="end" font-family="var(--font-mono)" font-weight="600" font-size="14" fill="var(--rust-ink)">-$8,498</text>
+            <text x="150" y="90" text-anchor="end" font-family="var(--font-body)" font-size="13" fill="var(--ink-soft)">Naive<tspan x="150" dy="16">Comparison</tspan></text>
+            <rect x="189.4" y="68" width="328.3" height="40" rx="6" fill="var(--rust)"/>
+            <text x="203.4" y="93" text-anchor="start" font-family="var(--font-mono)" font-weight="600" font-size="14" fill="#ffffff">-$8,498</text>
 
-            <text x="160" y="140" text-anchor="end" font-family="var(--font-body)" font-size="13" fill="var(--ink-soft)">Diff-in-Differences</text>
-            <rect x="517.7" y="120" width="140" height="40" rx="6" fill="var(--teal)"/>
-            <text x="662" y="145" text-anchor="start" font-family="var(--font-mono)" font-weight="600" font-size="14" fill="var(--teal-ink)">+$3,621</text>
+            <text x="150" y="150" text-anchor="end" font-family="var(--font-body)" font-size="13" fill="var(--ink-soft)">Diff-in-<tspan x="150" dy="16">Differences</tspan></text>
+            <rect x="517.7" y="128" width="140" height="40" rx="6" fill="var(--teal)"/>
+            <text x="643.7" y="153" text-anchor="end" font-family="var(--font-mono)" font-weight="600" font-size="14" fill="#ffffff">+$3,621</text>
           </svg>
           <p style="font-size:12.5px; color:var(--ink-faint); margin-top:4px;">Bars show each estimation method's result; the dashed line marks the true experimental effect both are trying to recover.</p>
         </div>
