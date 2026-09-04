@@ -11,9 +11,23 @@
 </head>
 <body>
 
+  <div class="status-bar">
+    <div class="status-bar-inner">
+      <span class="pulse-dot"></span>
+      <span>SYSTEM ACTIVE</span>
+      <span class="status-sep">/</span>
+      <span id="live-clock">--:--:--</span>
+      <span class="status-sep">/</span>
+      <span>CASE 02 OF 03</span>
+    </div>
+  </div>
+
   <header class="site-nav">
     <div class="nav-inner">
-      <a href="../index.html" class="nav-logo">Christopher Mathews</a>
+      <a href="../index.html" class="nav-brand">
+        <span class="nav-logo">Christopher Mathews</span>
+        <span class="nav-tag">// STRATEGIC INTELLIGENCE</span>
+      </a>
       <nav class="nav-links">
         <a href="../index.html#projects">Projects</a>
         <a href="../index.html#about">About</a>
@@ -25,7 +39,11 @@
 
   <section class="project-hero">
     <div class="container">
-      <a href="../index.html#projects" class="back-link">← All projects</a>
+      <a href="../index.html#projects" class="back-link">← All case files</a>
+      <div class="file-line">
+        <span class="pulse-dot" style="background:var(--teal);"></span>
+        <span>CASE 02 / ECONPULSE</span>
+      </div>
       <div class="project-meta">
         <span class="tag tag-teal">Econometrics</span>
         <span class="tag tag-teal">Sentiment Analysis</span>
@@ -38,7 +56,13 @@
 
   <section>
     <div class="container">
-      <img src="../assets/images/econpulse-dashboard.jpg" alt="EconPulse dashboard showing the Strategic Brief synthesis, Economic Health Index gauge, and live economic indicators" style="width:100%; border-radius:10px; border:1px solid var(--rule); box-shadow:var(--shadow); margin-bottom:28px;" />
+      <div class="feed">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 01 — STRATEGIC BRIEF &amp; HEALTH INDEX</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/econpulse-dashboard.jpg" alt="EconPulse dashboard showing the Strategic Brief synthesis, Economic Health Index gauge, and live economic indicators" />
+        </div>
+      </div>
+
       <div class="stat-row">
         <div class="stat-box highlight"><div class="label">Stress Signals Tracked</div><div class="value">5</div></div>
         <div class="stat-box"><div class="label">Stance Classifications</div><div class="value" style="font-size:16px;">Constructive / Watchful / Defensive</div></div>
@@ -75,6 +99,30 @@
         </div>
       </div>
 
+      <div class="feed" style="margin-top:8px;">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 02 — MAGNIFICENT SEVEN, FACTOR-BETA VIEW</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/econpulse-mag7.jpg" alt="Magnificent Seven stock cards showing alpha, Sharpe ratio, beta vs SPY, max drawdown, and an efficacy score for each ticker" />
+        </div>
+        <p class="feed-caption">Same efficacy methodology applied to the seven mega-cap stocks that now dominate index performance — alpha, Sharpe ratio, beta, and max drawdown against SPY.</p>
+      </div>
+
+      <div class="feed">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 03 — DISCLOSURE-VS-NARRATIVE SENTIMENT</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/econpulse-sentiment.jpg" alt="Earnings sentiment comparison showing each company's SEC 10-Q filing language sentiment against external news headline sentiment, with a computed gap score" />
+        </div>
+        <p class="feed-caption">Company Voice (SEC 10-Q MD&amp;A) vs. External Commentary (news headlines), both scored with VADER plus a finance-lexicon correction pass — fully local, no API calls.</p>
+      </div>
+
+      <div class="feed">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 04 — CROSS-ASSET CORRELATION</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/econpulse-correlation.jpg" alt="Cross-asset correlation matrix across tracked funds, Magnificent Seven stocks, and SPY, with crowding-risk and diversifier callouts" />
+        </div>
+        <p class="feed-caption">Pearson correlation of daily returns, trailing 5 years, across every tracked ticker + SPY — the portfolio-construction view a single-name-at-a-time dashboard otherwise misses.</p>
+      </div>
+
       <p class="eyebrow" style="margin-top:12px;">Built with</p>
       <div class="tech-list">
         <span class="skill-chip">Python / FastAPI</span>
@@ -88,7 +136,10 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p class="footer-note">Christopher Mathews · Peabody, MA</p>
+      <div class="footer-note">
+        <span>Christopher Mathews · Peabody, MA</span>
+        <span class="classification">STATUS: PUBLIC</span>
+      </div>
       <nav class="footer-links">
         <a href="mailto:cmathews928@gmail.com">Email</a>
         <a href="https://github.com/cmat928" target="_blank" rel="noopener">GitHub</a>
@@ -96,5 +147,6 @@
     </div>
   </footer>
 
+  <script src="../js/main.js"></script>
 </body>
 </html>
