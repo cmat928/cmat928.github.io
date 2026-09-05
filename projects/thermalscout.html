@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThermalScout — Christopher Mathews</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <div class="status-bar">
+    <div class="status-bar-inner">
+      <span class="pulse-dot"></span>
+      <span>SYSTEM ACTIVE</span>
+      <span class="status-sep">/</span>
+      <span id="live-clock">--:--:--</span>
+      <span class="status-sep">/</span>
+      <span>CASE 05 OF 05</span>
+    </div>
+  </div>
+
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-brand">
+        <span class="nav-logo">Christopher Mathews</span>
+        <span class="nav-tag">// STRATEGIC INTELLIGENCE</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <a href="../assets/resume.pdf" class="nav-resume">Resume</a>
+    </div>
+  </header>
+
+  <section class="project-hero">
+    <div class="container">
+      <a href="../index.html#projects" class="back-link">← All case files</a>
+      <div class="file-line">
+        <span class="pulse-dot" style="background:var(--teal);"></span>
+        <span>CASE 05 / THERMALSCOUT</span>
+      </div>
+      <div class="project-meta">
+        <span class="tag tag-teal">Remote Sensing</span>
+        <span class="tag tag-teal">Applied Research</span>
+        <span class="tag tag-teal">Data Fusion</span>
+      </div>
+      <h1>ThermalScout — The Signal That Wasn't</h1>
+      <p class="lede">A self-built research pipeline fusing NASA satellite data, a USGS gauge, drifting ocean floats, and species-occurrence records — free tools only, no trial accounts — built to ask what a genuinely merged dataset reveals about a warming lake and the ocean beside it. The two most promising-looking signals in it both turned out to be something other than what they first appeared.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="feed">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 01 — DOES QC FILTERING FIX SATELLITE LAKE TEMPERATURE?</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/thermalscout-qc.jpg" alt="Line chart comparing raw satellite lake surface temperature, QC-filtered satellite temperature, and a USGS gauge reading over ten days in August 2026, showing the satellite going badly wrong on specific days" />
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box highlight"><div class="label">Mean Error, Raw vs. QC-Filtered</div><div class="value" style="font-size:20px;">3.18°C → 2.42°C</div></div>
+        <div class="stat-box"><div class="label">Free Data Sources Fused</div><div class="value">6</div></div>
+        <div class="stat-box"><div class="label">GBIF Records Traced to Source</div><div class="value">349</div></div>
+      </div>
+
+      <div class="scqa">
+        <div class="scqa-block situation">
+          <p class="scqa-label">Situation</p>
+          <p>A tournament-fishing platform side project sparked an interest in NASA's free satellite data — but that platform is a commercial, freshwater-only product, not a sandbox for open-ended exploration. ThermalScout became that sandbox instead: a standalone project to see what a genuinely fused dataset — satellite, in-situ gauge, drifting ocean float, and biodiversity records, spanning both a lake and the ocean beside it — actually reveals, kept deliberately separate from any commercial codebase.</p>
+        </div>
+
+        <div class="scqa-block complication">
+          <p class="scqa-label">Complication</p>
+          <p>Every source in a stack like this comes with a hypothesis attached that sounds right until it's actually checked. Standard practice says filtering satellite readings by their own quality flags should make them trustworthy. Ordinary intuition says a biodiversity database's occurrence counts should track real environmental change. Both are the kind of assumption that quietly becomes "settled" the moment you stop at the first result that looks like it confirms them.</p>
+        </div>
+
+        <div class="scqa-block question">
+          <p class="scqa-label">Question</p>
+          <p>What actually survives when each hypothesis is checked against a second, independent source — not computed once and reported, but pressure-tested the way a real finding has to be?</p>
+        </div>
+
+        <div class="scqa-block answer">
+          <p class="scqa-label">Answer</p>
+          <p>Two research threads, each pushed past the first plausible-looking result:</p>
+          <ul style="color:var(--ink-soft); padding-left:20px; margin:0 0 16px;">
+            <li><b>Satellite temperature, checked against a gauge:</b> MODIS land-surface temperature for Lake Champlain, bit-decoded against its own QC band and validated against a USGS gauge reading. QC filtering caught the single catastrophic day outright — zero valid pixels, correctly refusing a confident wrong answer — but made 5 of the other 9 days worse, not better. On the two days still off by 3°C+ after filtering, every surviving pixel was already flagged at the satellite algorithm's own <i>best</i>-confidence tier, ruling out "filter harder" and pointing to a real physical effect: satellite skin temperature genuinely diverging from gauge bulk temperature, not a fixable data defect.</li>
+            <li><b>Species records, checked against ocean conditions:</b> Atlantic cod occurrence records jumped from 0 to 32 to 185 between 2024 and 2025, lining up suspiciously well with measured temperature and chlorophyll shifts — until breaking the records down by how each was collected showed almost the entire spike was <code>MATERIAL_SAMPLE</code> data, the signature of one research survey publishing to the database, not a change in the ocean. American lobster's records, by contrast, were 100% direct observation across all six years and showed no such artifact.</li>
+          </ul>
+          <div class="callout">
+            <b>Neither hypothesis held up — and that was the actual finding.</b> A pipeline built to confirm the hopeful story would have reported "QC filtering fixed it" and "cod are tracking warming water," then stopped. Checking each claim against an independent source instead turned two expected one-line results into two real, defensible findings about exactly where — and why — each data source can and can't be trusted. Before treating either as final, both were also checked against real peer-reviewed literature spanning ocean remote sensing, marine carbon cycling, and microbial ecology — not to replicate any of it, but to see whether the same shape of caution shows up independently elsewhere. It did, twice.
+          </div>
+        </div>
+      </div>
+
+      <div class="feed" style="margin-top:8px;">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 02 — WHEN A SPIKE IN THE DATA ISN'T A SPIKE IN REALITY</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/thermalscout-gbif.jpg" alt="Two stacked bar charts comparing Atlantic cod and American lobster GBIF occurrence records by year, colored by basis of record, showing cod's 2024-2025 spike is almost entirely material-sample data while lobster stays consistently human-observation" />
+        </div>
+        <p class="feed-caption">Same database, same region, same six years — one species' record is a reporting artifact, the other's isn't. Raw occurrence counts are dominated by survey effort until you check, a known problem in biodiversity data that this project's own numbers reproduced concretely rather than just cited.</p>
+      </div>
+
+      <div class="feed">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 03 — WHERE THE PIPELINE FINDS REAL SIGNAL</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/thermalscout-argo.jpg" alt="Scatter plot of Argo float surface temperature readings in the Gulf of Maine from June to August 2026, showing a noisy but clear warming trend from 18.2 to 25.6 degrees Celsius" />
+        </div>
+        <p class="feed-caption">Not every source needed a caveat. Three independent drifting floats — free, no account, oceanography's own gold standard — show a clean, physically sensible seasonal warming signature with no correction required.</p>
+      </div>
+
+      <p class="eyebrow" style="margin-top:12px;">Built with</p>
+      <div class="tech-list">
+        <span class="skill-chip">earthaccess</span>
+        <span class="skill-chip">argopy</span>
+        <span class="skill-chip">xarray / GDAL</span>
+        <span class="skill-chip">NASA · USGS · GBIF APIs</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-note">
+        <span>Christopher Mathews · Peabody, MA</span>
+        <span class="classification">STATUS: PUBLIC</span>
+      </div>
+      <nav class="footer-links">
+        <a href="mailto:cmathews928@gmail.com">Email</a>
+        <a href="https://github.com/cmat928" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
