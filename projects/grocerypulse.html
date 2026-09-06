@@ -60,7 +60,7 @@
         <div class="feed-label"><span class="pulse-dot"></span> FEED 01 — TEN COMPANIES, SIDE BY SIDE</div>
         <p class="feed-caption" style="margin:0 0 12px;">A pass through the cash flow and balance sheet statements — not just the income statement — for a genuinely per-company view. Two figures are flagged directly on the cards: <b>reinvestment ratio</b> (the share of CapEx + dividends + buybacks that actually went to CapEx, not back to shareholders) and <b>liabilities/assets</b> (balance-sheet leverage, broader than long-term debt alone). Kroger and Albertsons stand out on both, in the same direction.</p>
         <div class="kpi-grid">
-          <div class="kpi-card">
+          <div class="kpi-card" onclick="openSankey('SFM')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openSankey('SFM')">
             <div class="kpi-card-top"><span class="kpi-ticker">SFM</span><span class="kpi-name">Sprouts</span></div>
             <div class="kpi-metrics">
               <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">7.8%</span></div>
@@ -68,8 +68,9 @@
               <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">34.5%</span></div>
               <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">66.3%</span></div>
             </div>
+            <div class="kpi-card-hint">View income statement →</div>
           </div>
-          <div class="kpi-card">
+          <div class="kpi-card" onclick="openSankey('TGT')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openSankey('TGT')">
             <div class="kpi-card-top"><span class="kpi-ticker">TGT</span><span class="kpi-name">Target</span></div>
             <div class="kpi-metrics">
               <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">4.9%</span></div>
@@ -77,8 +78,9 @@
               <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">60.2%</span></div>
               <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">72.8%</span></div>
             </div>
+            <div class="kpi-card-hint">View income statement →</div>
           </div>
-          <div class="kpi-card">
+          <div class="kpi-card" onclick="openSankey('NGVC')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openSankey('NGVC')">
             <div class="kpi-card-top"><span class="kpi-ticker">NGVC</span><span class="kpi-name">Natural Grocers</span></div>
             <div class="kpi-metrics">
               <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">4.7%</span></div>
@@ -86,8 +88,9 @@
               <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">73.9%</span></div>
               <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">68.3%</span></div>
             </div>
+            <div class="kpi-card-hint">View income statement →</div>
           </div>
-          <div class="kpi-card">
+          <div class="kpi-card" onclick="openSankey('WMT')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openSankey('WMT')">
             <div class="kpi-card-top"><span class="kpi-ticker">WMT</span><span class="kpi-name">Walmart</span></div>
             <div class="kpi-metrics">
               <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">4.2%</span></div>
@@ -95,8 +98,9 @@
               <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">63.1%</span></div>
               <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">65.0%</span></div>
             </div>
+            <div class="kpi-card-hint">View income statement →</div>
           </div>
-          <div class="kpi-card">
+          <div class="kpi-card" onclick="openSankey('COST')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openSankey('COST')">
             <div class="kpi-card-top"><span class="kpi-ticker">COST</span><span class="kpi-name">Costco</span></div>
             <div class="kpi-metrics">
               <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">3.8%</span></div>
@@ -104,8 +108,9 @@
               <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">64.0%</span></div>
               <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">62.2%</span></div>
             </div>
+            <div class="kpi-card-hint">View income statement →</div>
           </div>
-          <div class="kpi-card">
+          <div class="kpi-card" onclick="openSankey('WMK')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openSankey('WMK')">
             <div class="kpi-card-top"><span class="kpi-ticker">WMK</span><span class="kpi-name">Weis Markets</span></div>
             <div class="kpi-metrics">
               <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">2.3%</span></div>
@@ -113,8 +118,9 @@
               <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">53.6%</span></div>
               <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">33.3%</span></div>
             </div>
+            <div class="kpi-card-hint">View income statement →</div>
           </div>
-          <div class="kpi-card">
+          <div class="kpi-card" onclick="openSankey('IMKTA')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openSankey('IMKTA')">
             <div class="kpi-card-top"><span class="kpi-ticker">IMKTA</span><span class="kpi-name">Ingles Markets</span></div>
             <div class="kpi-metrics">
               <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">2.2%</span></div>
@@ -122,8 +128,9 @@
               <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">90.3%</span></div>
               <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">37.0%</span></div>
             </div>
+            <div class="kpi-card-hint">View income statement →</div>
           </div>
-          <div class="kpi-card">
+          <div class="kpi-card" onclick="openSankey('KR')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openSankey('KR')">
             <div class="kpi-card-top"><span class="kpi-ticker">KR</span><span class="kpi-name">Kroger</span></div>
             <div class="kpi-metrics">
               <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">1.3%</span></div>
@@ -131,8 +138,9 @@
               <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value flag-rust">51.8%</span></div>
               <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value flag-rust">88.1%</span></div>
             </div>
+            <div class="kpi-card-hint">View income statement →</div>
           </div>
-          <div class="kpi-card">
+          <div class="kpi-card" onclick="openSankey('ACI')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openSankey('ACI')">
             <div class="kpi-card-top"><span class="kpi-ticker">ACI</span><span class="kpi-name">Albertsons</span></div>
             <div class="kpi-metrics">
               <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">0.9%</span></div>
@@ -140,8 +148,9 @@
               <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value flag-rust">50.5%</span></div>
               <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value flag-rust">93.1%</span></div>
             </div>
+            <div class="kpi-card-hint">View income statement →</div>
           </div>
-          <div class="kpi-card">
+          <div class="kpi-card" onclick="openSankey('GO')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openSankey('GO')">
             <div class="kpi-card-top"><span class="kpi-ticker">GO</span><span class="kpi-name">Grocery Outlet</span></div>
             <div class="kpi-metrics">
               <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value flag-rust">-4.7%</span></div>
@@ -149,6 +158,7 @@
               <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">100.0%</span></div>
               <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">68.2%</span></div>
             </div>
+            <div class="kpi-card-hint">View income statement →</div>
           </div>
         </div>
         <p class="feed-caption">All 10 companies, latest fiscal year. Full derivation — including which XBRL tag was used for each figure and why — is in the project's own methodology appendix, not just asserted here.</p>
@@ -223,6 +233,26 @@
     </div>
   </section>
 
+  <div class="sankey-modal" id="sankeyModal" hidden>
+    <div class="sankey-backdrop" onclick="closeSankey()"></div>
+    <div class="sankey-panel" role="dialog" aria-modal="true" aria-labelledby="sankeyTicker">
+      <button class="sankey-close" onclick="closeSankey()" aria-label="Close">&times;</button>
+      <div class="sankey-header">
+        <span class="kpi-ticker" id="sankeyTicker"></span>
+        <span class="kpi-name" id="sankeyName"></span>
+      </div>
+      <p class="sankey-period" id="sankeyPeriod"></p>
+      <div class="sankey-svg-wrap">
+        <svg id="sankeySvg" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+      <div class="sankey-legend">
+        <span><span class="sankey-swatch" style="background:var(--teal);"></span>Carried forward</span>
+        <span><span class="sankey-swatch" style="background:var(--rust);"></span>Leaves the business</span>
+      </div>
+      <p class="sankey-note" id="sankeyNote"></p>
+    </div>
+  </div>
+
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-note">
@@ -237,5 +267,160 @@
   </footer>
 
   <script src="../js/main.js"></script>
+  <script>
+    /* Income-statement Sankey, one company at a time, opened from a KPI
+     * card click. Structure is deliberately 2 residual splits, not the
+     * raw SG&A/tax/interest tags directly -- this guarantees every flow
+     * balances exactly for all 10 companies without special-casing each
+     * one's own tag quirks (documented in GroceryPulse's own methodology
+     * appendix: Kroger has no SG&A tag at all, several companies' SG&A
+     * doesn't reconcile cleanly against Gross Profit and Operating
+     * Income). "Operating Costs" = Gross Profit - Operating Income
+     * (so it silently absorbs impairments/other charges where they
+     * exist, e.g. Grocery Outlet, Kroger, Sprouts, Target -- noted in
+     * the caption rather than hidden). "Taxes, Interest & Other" =
+     * Operating Income - Net Income. All figures in $ millions, pulled
+     * directly from GroceryPulse's own financial_metrics.csv -- same
+     * source as the KPI cards above, not re-derived here.
+     */
+    var INCOME_STATEMENTS = {
+      SFM:   { name: "Sprouts Farmers Market", period: "FY2025 (year ended 2025-12-28)", revenue: 8806,   cogs: 5390,   grossProfit: 3416,  operatingCosts: 2730,  operatingIncome: 686,   taxesInterestOther: 162,  netIncome: 524,   loss: false },
+      TGT:   { name: "Target",                 period: "FY2025 (year ended 2026-01-31)", revenue: 104780, cogs: 75511,  grossProfit: 29269, operatingCosts: 24152, operatingIncome: 5117,  taxesInterestOther: 1412, netIncome: 3705,  loss: false },
+      NGVC:  { name: "Natural Grocers",         period: "FY2025 (year ended 2025-09-30)", revenue: 1331,   cogs: 933,    grossProfit: 398,   operatingCosts: 336,   operatingIncome: 62,    taxesInterestOther: 16,   netIncome: 46,    loss: false },
+      WMT:   { name: "Walmart",                 period: "FY2025 (year ended 2026-01-31)", revenue: 706413, cogs: 535395, grossProfit: 171018, operatingCosts: 141193, operatingIncome: 29825, taxesInterestOther: 7932, netIncome: 21893, loss: false },
+      COST:  { name: "Costco",                  period: "FY2025 (year ended 2025-08-31)", revenue: 275235, cogs: 239886, grossProfit: 35349, operatingCosts: 24966, operatingIncome: 10383, taxesInterestOther: 2284, netIncome: 8099,  loss: false },
+      WMK:   { name: "Weis Markets",             period: "FY2025 (year ended 2025-12-27)", revenue: 4958,   cogs: 3718,   grossProfit: 1240,  operatingCosts: 1126,  operatingIncome: 114,   taxesInterestOther: 20,   netIncome: 94,    loss: false },
+      IMKTA: { name: "Ingles Markets",           period: "FY2025 (year ended 2025-09-27)", revenue: 5334,   cogs: 4060,   grossProfit: 1274,  operatingCosts: 1157,  operatingIncome: 118,   taxesInterestOther: 34,   netIncome: 84,    loss: false },
+      KR:    { name: "Kroger",                   period: "FY2025 (year ended 2026-01-31)", revenue: 147642, cogs: 113240, grossProfit: 34402, operatingCosts: 32512, operatingIncome: 1890,  taxesInterestOther: 874,  netIncome: 1016,  loss: false,
+               note: "Kroger has no SG&A tag in its SEC filings at all -- “Operating Costs” here is a residual (Gross Profit − Operating Income), which is why it fully absorbs the FY2025 $2.5B fulfillment-network impairment rather than showing it as a separate item." },
+      ACI:   { name: "Albertsons",               period: "FY2025 (year ended 2026-02-28)", revenue: 83173,  cogs: 60566,  grossProfit: 22607, operatingCosts: 21879, operatingIncome: 728,   taxesInterestOther: 510,  netIncome: 217,   loss: false },
+      GO:    { name: "Grocery Outlet",           period: "FY2025 (year ended 2026-01-03)", revenue: 4689,   cogs: 3269,   grossProfit: 1419,  operatingCosts: 1641,  operatingIncome: -222,  taxesInterestOther: 3,    netIncome: -225,  loss: true,
+               note: "Grocery Outlet recorded an operating loss this year -- Operating Income −$222M, Net Income −$225M -- driven by a real $308.7M gap between Gross Profit and Operating Income (impairment/restructuring charges), caught automatically by this project's own reconciliation QA gate. A Sankey can't show a loss as a positive-width flow, so the diagram stops at Gross Profit and the real figures are stated here directly instead of drawn." },
+    };
+
+    function fmtMoney(m) {
+      var abs = Math.abs(m);
+      var sign = m < 0 ? '−' : '';
+      if (abs >= 1000) return sign + '$' + (abs / 1000).toFixed(1) + 'B';
+      return sign + '$' + Math.round(abs) + 'M';
+    }
+
+    function sankeyRibbonPath(x1, y1a, y1b, x2, y2a, y2b) {
+      var xm = (x1 + x2) / 2;
+      return 'M' + x1 + ',' + y1a +
+        ' C' + xm + ',' + y1a + ' ' + xm + ',' + y2a + ' ' + x2 + ',' + y2a +
+        ' L' + x2 + ',' + y2b +
+        ' C' + xm + ',' + y2b + ' ' + xm + ',' + y1b + ' ' + x1 + ',' + y1b + ' Z';
+    }
+
+    function svgEl(tag, attrs) {
+      var el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      for (var k in attrs) el.setAttribute(k, attrs[k]);
+      return el;
+    }
+
+    function renderSankey(ticker) {
+      var d = INCOME_STATEMENTS[ticker];
+      var svg = document.getElementById('sankeySvg');
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+      var cs = getComputedStyle(document.documentElement);
+      var TEAL = cs.getPropertyValue('--teal').trim();
+      var RUST = cs.getPropertyValue('--rust').trim();
+      var INK = cs.getPropertyValue('--ink').trim();
+      var INK_SOFT = cs.getPropertyValue('--ink-soft').trim();
+
+      var W = 860, nodeW = 16, padY = 22;
+      var numCols = d.loss ? 2 : 4;
+      var H = d.loss ? 190 : 340;
+      var usableH = H - 2 * padY;
+      var scale = usableH / d.revenue;
+      var colGap = (W - nodeW) / (numCols - 1);
+      var colX = [];
+      for (var i = 0; i < numCols; i++) colX.push(i * colGap);
+
+      svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+
+      function label(x, y, name, value, color) {
+        var t1 = svgEl('text', { x: x, y: y - 18, 'font-family': 'IBM Plex Mono, monospace', 'font-size': '11.5', 'font-weight': '600', fill: INK });
+        t1.textContent = name;
+        svg.appendChild(t1);
+        var t2 = svgEl('text', { x: x, y: y - 5, 'font-family': 'IBM Plex Mono, monospace', 'font-size': '11', fill: color });
+        t2.textContent = fmtMoney(value);
+        svg.appendChild(t2);
+      }
+
+      function ribbon(x1, y1a, y1b, x2, y2a, y2b, color) {
+        svg.appendChild(svgEl('path', { d: sankeyRibbonPath(x1, y1a, y1b, x2, y2a, y2b), fill: color, opacity: '0.32' }));
+      }
+
+      function rect(x, y, h, color) {
+        svg.appendChild(svgEl('rect', { x: x, y: y, width: nodeW, height: Math.max(h, 1.5), fill: color }));
+      }
+
+      // Column 0: Revenue (full height)
+      var revTop = padY, revBot = padY + d.revenue * scale;
+      rect(colX[0], revTop, revBot - revTop, TEAL);
+      label(colX[0], revTop + padY * 0.6, 'Revenue', d.revenue, INK_SOFT);
+
+      // Column 1: COGS (top) + Gross Profit (bottom)
+      var cogsTop = revTop, cogsBot = revTop + d.cogs * scale;
+      var gpTop = cogsBot, gpBot = revBot;
+      rect(colX[1], cogsTop, cogsBot - cogsTop, RUST);
+      rect(colX[1], gpTop, gpBot - gpTop, TEAL);
+      ribbon(colX[0] + nodeW, revTop, cogsBot, colX[1], cogsTop, cogsBot, RUST);
+      ribbon(colX[0] + nodeW, cogsBot, revBot, colX[1], gpTop, gpBot, TEAL);
+      label(colX[1], cogsTop + Math.max((cogsBot - cogsTop) * 0.5, 14), 'COGS', d.cogs, INK_SOFT);
+      label(colX[1], gpBot, 'Gross Profit', d.grossProfit, INK_SOFT);
+
+      if (d.loss) {
+        document.getElementById('sankeyNote').innerHTML = '<div class="sankey-loss-box"><b>Stops here — ' + d.name + ' recorded an operating loss this year.</b> ' + d.note + '</div>';
+        return;
+      }
+      document.getElementById('sankeyNote').textContent = d.note ||
+        '"Operating Costs" and "Taxes, Interest & Other" are residuals (Gross Profit − Operating Income, and Operating Income − Net Income) so every flow balances exactly -- see the project methodology for why a raw SG&A tag alone can\'t be trusted to do that across all 10 companies.';
+
+      // Column 2: Operating Costs (top of GP slice) + Operating Income (bottom of GP slice)
+      var ocTop = gpTop, ocBot = gpTop + d.operatingCosts * scale;
+      var oiTop = ocBot, oiBot = gpBot;
+      rect(colX[2], ocTop, ocBot - ocTop, RUST);
+      rect(colX[2], oiTop, oiBot - oiTop, TEAL);
+      ribbon(colX[1] + nodeW, gpTop, ocBot, colX[2], ocTop, ocBot, RUST);
+      ribbon(colX[1] + nodeW, ocBot, gpBot, colX[2], oiTop, oiBot, TEAL);
+      label(colX[2], ocTop + Math.max((ocBot - ocTop) * 0.5, 14), 'Operating Costs', d.operatingCosts, INK_SOFT);
+      label(colX[2], oiBot, 'Operating Income', d.operatingIncome, INK_SOFT);
+
+      // Column 3: Taxes/Interest/Other (top of OI slice) + Net Income (bottom of OI slice)
+      var tioTop = oiTop, tioBot = oiTop + d.taxesInterestOther * scale;
+      var niTop = tioBot, niBot = oiBot;
+      rect(colX[3], tioTop, tioBot - tioTop, RUST);
+      rect(colX[3], niTop, niBot - niTop, TEAL);
+      ribbon(colX[2] + nodeW, oiTop, tioBot, colX[3], tioTop, tioBot, RUST);
+      ribbon(colX[2] + nodeW, tioBot, oiBot, colX[3], niTop, niBot, TEAL);
+      label(colX[3] - 90, tioTop + Math.max((tioBot - tioTop) * 0.5, 14), 'Taxes, Interest & Other', d.taxesInterestOther, INK_SOFT);
+      label(colX[3] - 90, niBot, 'Net Income', d.netIncome, INK_SOFT);
+    }
+
+    function openSankey(ticker) {
+      var d = INCOME_STATEMENTS[ticker];
+      if (!d) return;
+      document.getElementById('sankeyTicker').textContent = ticker;
+      document.getElementById('sankeyName').textContent = d.name;
+      document.getElementById('sankeyPeriod').textContent = d.period;
+      renderSankey(ticker);
+      var modal = document.getElementById('sankeyModal');
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSankey() {
+      document.getElementById('sankeyModal').hidden = true;
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeSankey();
+    });
+  </script>
 </body>
 </html>
