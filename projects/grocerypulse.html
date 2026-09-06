@@ -57,67 +57,8 @@
   <section>
     <div class="container">
       <div class="feed">
-        <div class="feed-label"><span class="pulse-dot"></span> FEED 01 — TEN COMPANIES, ONE COMMON FINANCIAL PANEL</div>
-        <div class="feed-frame bracket-live">
-          <img src="../assets/images/grocerypulse-margins.jpg" alt="Horizontal bar chart of operating margin across 10 public grocery and retail companies, showing Sprouts highest at 7.8% and Grocery Outlet as the only negative margin at -4.7%" />
-        </div>
-      </div>
-
-      <div class="stat-row">
-        <div class="stat-box highlight"><div class="label">Kroger Fulfillment Impairment (its own disclosure)</div><div class="value" style="font-size:20px;">$2.5B</div></div>
-        <div class="stat-box"><div class="label">Companies Analyzed</div><div class="value">10</div></div>
-        <div class="stat-box"><div class="label">Strategic Actions Tested</div><div class="value">4 + 1 validation</div></div>
-      </div>
-
-      <div class="scqa">
-        <div class="scqa-block situation">
-          <p class="scqa-label">Situation</p>
-          <p>Grocery companies constantly announce strategic pivots — automated fulfillment, retail media networks, smaller store formats. Each one comes with a story about why it will show up in the numbers eventually. Whether it actually did is a question competitive intelligence teams ask constantly and rarely answer rigorously.</p>
-        </div>
-
-        <div class="scqa-block complication">
-          <p class="scqa-label">Complication</p>
-          <p>Naively comparing a company's financials before and after its own announcement conflates the strategy's effect with everything else moving through the sector at the same time — inflation, fuel costs, a pandemic. A valid comparison needs a control group of peers who didn't make the same bet. That's harder than it sounds: in a market this concentrated, competitors are often quietly making similar moves in the same window, which would silently contaminate the exact comparison meant to isolate the effect.</p>
-        </div>
-
-        <div class="scqa-block question">
-          <p class="scqa-label">Question</p>
-          <p>Using only free SEC filings data, could a properly designed difference-in-differences analysis actually isolate whether four real grocery-sector strategic bets moved the metrics they were supposed to move — without quietly fooling itself with a contaminated control group?</p>
-        </div>
-
-        <div class="scqa-block answer">
-          <p class="scqa-label">Answer</p>
-          <p>Built a full pipeline from SEC's raw XBRL data (10 companies, hand-verified financial-statement tag mapping, an automated reconciliation check that catches bad derivations before they reach a chart), then ran five separate event studies — not one pooled regression, deliberately, since pooling different companies' different strategic bets into a single staggered-timing model is a known way to bias the result:</p>
-          <ul style="color:var(--ink-soft); padding-left:20px; margin:0 0 16px;">
-            <li><b>Every control group was confound-checked against live SEC full-text search, not assumed clean.</b> Testing Kroger's automated-fulfillment bet meant excluding Walmart from the control group — Walmart was running its own competing automation investment in the same window. Testing Albertsons' retail-media launch meant excluding <i>both</i> Kroger <i>and</i> Walmart, since both already had a mature retail-media business years before Albertsons' launch — a confound a less careful design would have missed entirely.</li>
-            <li><b>The headline finding required no regression at all.</b> Kroger's own most recent 10-K states, in a dedicated footnote, that its automated fulfillment network with Ocado "did not meet operational or financial expectations" — a $2.5 billion impairment charge, including roughly $350 million paid to Ocado just to exit the relationship on closed facilities. The event-study analysis around it is honestly inconclusive on its own (the pre-trend isn't clean, most likely from anticipation effects around the original 2018 announcement) — reported as a real limitation, not smoothed into a false clean story.</li>
-            <li><b>A follow-up pass through the cash flow statement sharpened that finding.</b> In the same fiscal year, Kroger still paid out $3.58 billion in dividends and buybacks — nearly matching its own $3.86 billion CapEx budget. Its "reinvestment ratio" (the share of CapEx plus shareholder returns that actually went to CapEx) was 51.8%, among the lowest of the 10 companies studied. Albertsons shows a related pattern from a different angle: the most leveraged balance sheet in the group (93.1% liabilities-to-assets) while still running its own $1.8 billion capital-return program. Neither fact proves the capital allocation caused or should have offset the strategic outcome — but both are real, disclosed, and go directly to whether spending matched stated priorities.</li>
-          </ul>
-          <div class="callout">
-            <b>A placebo test validated the method before trusting it on the real questions.</b> Splitting the same 10 companies on an economically meaningless axis (alphabetical ticker order) and running the identical event-study code against COVID-19 correctly found nothing — no spurious pattern, no false "effect." Only after the machinery proved it wouldn't manufacture a finding out of noise was it trusted on the four real strategic bets. Two real data bugs surfaced and were fixed the same way along the way: an SEC financial-statement tag assumed universal across all 10 companies wasn't (one company used a different one entirely), and SEC's own period-labeling field turned out to silently misattribute years of financial history unless cross-checked against each filing's actual reporting dates.
-          </div>
-        </div>
-      </div>
-
-      <div class="feed" style="margin-top:8px;">
-        <div class="feed-label"><span class="pulse-dot"></span> FEED 02 — THE ANALYSIS THAT AGREED WITH THE COMPANY'S OWN DISCLOSURE</div>
-        <div class="feed-frame bracket-live">
-          <img src="../assets/images/grocerypulse-kroger.jpg" alt="Event-study chart showing Kroger's operating margin relative to a clean peer control group in the years before and after its automated fulfillment centers went live, with wide confidence intervals in the impairment year" />
-        </div>
-        <p class="feed-caption">Kroger vs. a control group with no competing automation bet, centered on the 2021 go-live of its first Ocado-powered fulfillment centers. The pre-period isn't flat — a real limitation, reported as one — and the impairment year's confidence interval is too wide to call on its own. The regression's honest uncertainty and the company's own $2.5B disclosure are two separate facts pointing the same direction, not one inflating the other.</p>
-      </div>
-
-      <div class="feed">
-        <div class="feed-label"><span class="pulse-dot"></span> FEED 03 — PROVING THE METHOD BEFORE TRUSTING IT</div>
-        <div class="feed-frame bracket-live">
-          <img src="../assets/images/grocerypulse-placebo.jpg" alt="Event-study chart using an economically meaningless alphabetical split of the same 10 companies around the COVID-19 shock, showing flat, insignificant coefficients throughout" />
-        </div>
-        <p class="feed-caption">Same event-study code, same 10 companies, split alphabetically by ticker instead of by any real strategic decision. No pattern — which is the correct result. A method that finds "effects" in a meaningless split would find them everywhere.</p>
-      </div>
-
-      <div class="feed">
-        <div class="feed-label"><span class="pulse-dot"></span> FEED 04 — TEN COMPANIES, SIDE BY SIDE</div>
-        <p class="feed-caption" style="margin-top:0 0 12px;">A follow-up pass through the cash flow and balance sheet statements — not just the income statement — for a genuinely per-company view. Two figures are flagged directly on the cards: <b>reinvestment ratio</b> (the share of CapEx + dividends + buybacks that actually went to CapEx, not back to shareholders) and <b>liabilities/assets</b> (balance-sheet leverage, broader than long-term debt alone). Kroger and Albertsons stand out on both, in the same direction.</p>
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 01 — TEN COMPANIES, SIDE BY SIDE</div>
+        <p class="feed-caption" style="margin:0 0 12px;">A pass through the cash flow and balance sheet statements — not just the income statement — for a genuinely per-company view. Two figures are flagged directly on the cards: <b>reinvestment ratio</b> (the share of CapEx + dividends + buybacks that actually went to CapEx, not back to shareholders) and <b>liabilities/assets</b> (balance-sheet leverage, broader than long-term debt alone). Kroger and Albertsons stand out on both, in the same direction.</p>
         <div class="kpi-grid">
           <div class="kpi-card">
             <div class="kpi-card-top"><span class="kpi-ticker">SFM</span><span class="kpi-name">Sprouts</span></div>
@@ -211,6 +152,65 @@
           </div>
         </div>
         <p class="feed-caption">All 10 companies, latest fiscal year. Full derivation — including which XBRL tag was used for each figure and why — is in the project's own methodology appendix, not just asserted here.</p>
+      </div>
+
+      <div class="feed" style="margin-top:8px;">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 02 — TEN COMPANIES, ONE COMMON FINANCIAL PANEL</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/grocerypulse-margins.jpg" alt="Horizontal bar chart of operating margin across 10 public grocery and retail companies, showing Sprouts highest at 7.8% and Grocery Outlet as the only negative margin at -4.7%" />
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box highlight"><div class="label">Kroger Fulfillment Impairment (its own disclosure)</div><div class="value" style="font-size:20px;">$2.5B</div></div>
+        <div class="stat-box"><div class="label">Companies Analyzed</div><div class="value">10</div></div>
+        <div class="stat-box"><div class="label">Strategic Actions Tested</div><div class="value">4 + 1 validation</div></div>
+      </div>
+
+      <div class="scqa">
+        <div class="scqa-block situation">
+          <p class="scqa-label">Situation</p>
+          <p>Grocery companies constantly announce strategic pivots — automated fulfillment, retail media networks, smaller store formats. Each one comes with a story about why it will show up in the numbers eventually. Whether it actually did is a question competitive intelligence teams ask constantly and rarely answer rigorously.</p>
+        </div>
+
+        <div class="scqa-block complication">
+          <p class="scqa-label">Complication</p>
+          <p>Naively comparing a company's financials before and after its own announcement conflates the strategy's effect with everything else moving through the sector at the same time — inflation, fuel costs, a pandemic. A valid comparison needs a control group of peers who didn't make the same bet. That's harder than it sounds: in a market this concentrated, competitors are often quietly making similar moves in the same window, which would silently contaminate the exact comparison meant to isolate the effect.</p>
+        </div>
+
+        <div class="scqa-block question">
+          <p class="scqa-label">Question</p>
+          <p>Using only free SEC filings data, could a properly designed difference-in-differences analysis actually isolate whether four real grocery-sector strategic bets moved the metrics they were supposed to move — without quietly fooling itself with a contaminated control group?</p>
+        </div>
+
+        <div class="scqa-block answer">
+          <p class="scqa-label">Answer</p>
+          <p>Built a full pipeline from SEC's raw XBRL data (10 companies, hand-verified financial-statement tag mapping, an automated reconciliation check that catches bad derivations before they reach a chart), then ran five separate event studies — not one pooled regression, deliberately, since pooling different companies' different strategic bets into a single staggered-timing model is a known way to bias the result:</p>
+          <ul style="color:var(--ink-soft); padding-left:20px; margin:0 0 16px;">
+            <li><b>Every control group was confound-checked against live SEC full-text search, not assumed clean.</b> Testing Kroger's automated-fulfillment bet meant excluding Walmart from the control group — Walmart was running its own competing automation investment in the same window. Testing Albertsons' retail-media launch meant excluding <i>both</i> Kroger <i>and</i> Walmart, since both already had a mature retail-media business years before Albertsons' launch — a confound a less careful design would have missed entirely.</li>
+            <li><b>The headline finding required no regression at all.</b> Kroger's own most recent 10-K states, in a dedicated footnote, that its automated fulfillment network with Ocado "did not meet operational or financial expectations" — a $2.5 billion impairment charge, including roughly $350 million paid to Ocado just to exit the relationship on closed facilities. The event-study analysis around it is honestly inconclusive on its own (the pre-trend isn't clean, most likely from anticipation effects around the original 2018 announcement) — reported as a real limitation, not smoothed into a false clean story.</li>
+            <li><b>A follow-up pass through the cash flow statement sharpened that finding.</b> In the same fiscal year, Kroger still paid out $3.58 billion in dividends and buybacks — nearly matching its own $3.86 billion CapEx budget. Its "reinvestment ratio" (the share of CapEx plus shareholder returns that actually went to CapEx) was 51.8%, among the lowest of the 10 companies studied. Albertsons shows a related pattern from a different angle: the most leveraged balance sheet in the group (93.1% liabilities-to-assets) while still running its own $1.8 billion capital-return program. Neither fact proves the capital allocation caused or should have offset the strategic outcome — but both are real, disclosed, and go directly to whether spending matched stated priorities.</li>
+          </ul>
+          <div class="callout">
+            <b>A placebo test validated the method before trusting it on the real questions.</b> Splitting the same 10 companies on an economically meaningless axis (alphabetical ticker order) and running the identical event-study code against COVID-19 correctly found nothing — no spurious pattern, no false "effect." Only after the machinery proved it wouldn't manufacture a finding out of noise was it trusted on the four real strategic bets. Two real data bugs surfaced and were fixed the same way along the way: an SEC financial-statement tag assumed universal across all 10 companies wasn't (one company used a different one entirely), and SEC's own period-labeling field turned out to silently misattribute years of financial history unless cross-checked against each filing's actual reporting dates.
+          </div>
+        </div>
+      </div>
+
+      <div class="feed" style="margin-top:8px;">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 03 — THE ANALYSIS THAT AGREED WITH THE COMPANY'S OWN DISCLOSURE</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/grocerypulse-kroger.jpg" alt="Event-study chart showing Kroger's operating margin relative to a clean peer control group in the years before and after its automated fulfillment centers went live, with wide confidence intervals in the impairment year" />
+        </div>
+        <p class="feed-caption">Kroger vs. a control group with no competing automation bet, centered on the 2021 go-live of its first Ocado-powered fulfillment centers. The pre-period isn't flat — a real limitation, reported as one — and the impairment year's confidence interval is too wide to call on its own. The regression's honest uncertainty and the company's own $2.5B disclosure are two separate facts pointing the same direction, not one inflating the other.</p>
+      </div>
+
+      <div class="feed">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 04 — PROVING THE METHOD BEFORE TRUSTING IT</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/grocerypulse-placebo.jpg" alt="Event-study chart using an economically meaningless alphabetical split of the same 10 companies around the COVID-19 shock, showing flat, insignificant coefficients throughout" />
+        </div>
+        <p class="feed-caption">Same event-study code, same 10 companies, split alphabetically by ticker instead of by any real strategic decision. No pattern — which is the correct result. A method that finds "effects" in a meaningless split would find them everywhere.</p>
       </div>
 
       <p class="eyebrow" style="margin-top:12px;">Built with</p>
