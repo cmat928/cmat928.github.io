@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GroceryPulse — Christopher Mathews</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <div class="status-bar">
+    <div class="status-bar-inner">
+      <span class="pulse-dot"></span>
+      <span>SYSTEM ACTIVE</span>
+      <span class="status-sep">/</span>
+      <span id="live-clock">--:--:--</span>
+      <span class="status-sep">/</span>
+      <span>CASE 06 OF 06</span>
+    </div>
+  </div>
+
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-brand">
+        <span class="nav-logo">Christopher Mathews</span>
+        <span class="nav-tag">// STRATEGIC INTELLIGENCE</span>
+      </a>
+      <nav class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <a href="../assets/resume.pdf" class="nav-resume">Resume</a>
+    </div>
+  </header>
+
+  <section class="project-hero">
+    <div class="container">
+      <a href="../index.html#projects" class="back-link">← All case files</a>
+      <div class="file-line">
+        <span class="pulse-dot" style="background:var(--teal);"></span>
+        <span>CASE 06 / GROCERYPULSE</span>
+      </div>
+      <div class="project-meta">
+        <span class="tag tag-teal">Causal Inference</span>
+        <span class="tag tag-teal">Financial Analytics</span>
+        <span class="tag tag-teal">SEC Data</span>
+      </div>
+      <h1>GroceryPulse — Finding the Clean Control</h1>
+      <p class="lede">A from-scratch SEC-filings pipeline across 10 public grocery and retail companies, built to test whether four real strategic bets — automated fulfillment, retail media, store-format changes — actually moved the financial metrics they were supposed to move. The hard part was never running the regression. It was proving the "control" company hadn't quietly made the same bet.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="feed">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 01 — TEN COMPANIES, ONE COMMON FINANCIAL PANEL</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/grocerypulse-margins.jpg" alt="Horizontal bar chart of operating margin across 10 public grocery and retail companies, showing Sprouts highest at 7.8% and Grocery Outlet as the only negative margin at -4.7%" />
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box highlight"><div class="label">Kroger Fulfillment Impairment (its own disclosure)</div><div class="value" style="font-size:20px;">$2.5B</div></div>
+        <div class="stat-box"><div class="label">Companies Analyzed</div><div class="value">10</div></div>
+        <div class="stat-box"><div class="label">Strategic Actions Tested</div><div class="value">4 + 1 validation</div></div>
+      </div>
+
+      <div class="scqa">
+        <div class="scqa-block situation">
+          <p class="scqa-label">Situation</p>
+          <p>Grocery companies constantly announce strategic pivots — automated fulfillment, retail media networks, smaller store formats. Each one comes with a story about why it will show up in the numbers eventually. Whether it actually did is a question competitive intelligence teams ask constantly and rarely answer rigorously.</p>
+        </div>
+
+        <div class="scqa-block complication">
+          <p class="scqa-label">Complication</p>
+          <p>Naively comparing a company's financials before and after its own announcement conflates the strategy's effect with everything else moving through the sector at the same time — inflation, fuel costs, a pandemic. A valid comparison needs a control group of peers who didn't make the same bet. That's harder than it sounds: in a market this concentrated, competitors are often quietly making similar moves in the same window, which would silently contaminate the exact comparison meant to isolate the effect.</p>
+        </div>
+
+        <div class="scqa-block question">
+          <p class="scqa-label">Question</p>
+          <p>Using only free SEC filings data, could a properly designed difference-in-differences analysis actually isolate whether four real grocery-sector strategic bets moved the metrics they were supposed to move — without quietly fooling itself with a contaminated control group?</p>
+        </div>
+
+        <div class="scqa-block answer">
+          <p class="scqa-label">Answer</p>
+          <p>Built a full pipeline from SEC's raw XBRL data (10 companies, hand-verified financial-statement tag mapping, an automated reconciliation check that catches bad derivations before they reach a chart), then ran five separate event studies — not one pooled regression, deliberately, since pooling different companies' different strategic bets into a single staggered-timing model is a known way to bias the result:</p>
+          <ul style="color:var(--ink-soft); padding-left:20px; margin:0 0 16px;">
+            <li><b>Every control group was confound-checked against live SEC full-text search, not assumed clean.</b> Testing Kroger's automated-fulfillment bet meant excluding Walmart from the control group — Walmart was running its own competing automation investment in the same window. Testing Albertsons' retail-media launch meant excluding <i>both</i> Kroger <i>and</i> Walmart, since both already had a mature retail-media business years before Albertsons' launch — a confound a less careful design would have missed entirely.</li>
+            <li><b>The headline finding required no regression at all.</b> Kroger's own most recent 10-K states, in a dedicated footnote, that its automated fulfillment network with Ocado "did not meet operational or financial expectations" — a $2.5 billion impairment charge, including roughly $350 million paid to Ocado just to exit the relationship on closed facilities. The event-study analysis around it is honestly inconclusive on its own (the pre-trend isn't clean, most likely from anticipation effects around the original 2018 announcement) — reported as a real limitation, not smoothed into a false clean story.</li>
+          </ul>
+          <div class="callout">
+            <b>A placebo test validated the method before trusting it on the real questions.</b> Splitting the same 10 companies on an economically meaningless axis (alphabetical ticker order) and running the identical event-study code against COVID-19 correctly found nothing — no spurious pattern, no false "effect." Only after the machinery proved it wouldn't manufacture a finding out of noise was it trusted on the four real strategic bets. Two real data bugs surfaced and were fixed the same way along the way: an SEC financial-statement tag assumed universal across all 10 companies wasn't (one company used a different one entirely), and SEC's own period-labeling field turned out to silently misattribute years of financial history unless cross-checked against each filing's actual reporting dates.
+          </div>
+        </div>
+      </div>
+
+      <div class="feed" style="margin-top:8px;">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 02 — THE ANALYSIS THAT AGREED WITH THE COMPANY'S OWN DISCLOSURE</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/grocerypulse-kroger.jpg" alt="Event-study chart showing Kroger's operating margin relative to a clean peer control group in the years before and after its automated fulfillment centers went live, with wide confidence intervals in the impairment year" />
+        </div>
+        <p class="feed-caption">Kroger vs. a control group with no competing automation bet, centered on the 2021 go-live of its first Ocado-powered fulfillment centers. The pre-period isn't flat — a real limitation, reported as one — and the impairment year's confidence interval is too wide to call on its own. The regression's honest uncertainty and the company's own $2.5B disclosure are two separate facts pointing the same direction, not one inflating the other.</p>
+      </div>
+
+      <div class="feed">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 03 — PROVING THE METHOD BEFORE TRUSTING IT</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/grocerypulse-placebo.jpg" alt="Event-study chart using an economically meaningless alphabetical split of the same 10 companies around the COVID-19 shock, showing flat, insignificant coefficients throughout" />
+        </div>
+        <p class="feed-caption">Same event-study code, same 10 companies, split alphabetically by ticker instead of by any real strategic decision. No pattern — which is the correct result. A method that finds "effects" in a meaningless split would find them everywhere.</p>
+      </div>
+
+      <p class="eyebrow" style="margin-top:12px;">Built with</p>
+      <div class="tech-list">
+        <span class="skill-chip">SEC XBRL API</span>
+        <span class="skill-chip">SEC Full-Text Search</span>
+        <span class="skill-chip">statsmodels</span>
+        <span class="skill-chip">Event-Study DiD</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-note">
+        <span>Christopher Mathews · Peabody, MA</span>
+        <span class="classification">STATUS: PUBLIC</span>
+      </div>
+      <nav class="footer-links">
+        <a href="mailto:cmathews928@gmail.com">Email</a>
+        <a href="https://github.com/cmat928" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
