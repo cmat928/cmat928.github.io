@@ -48,6 +48,7 @@
         <span class="tag tag-teal">Remote Sensing</span>
         <span class="tag tag-teal">Applied Research</span>
         <span class="tag tag-teal">Data Fusion</span>
+        <span class="tag tag-teal">Econometrics</span>
       </div>
       <h1>ThermalScout — The Signal That Wasn't</h1>
       <p class="lede">A self-built research pipeline fusing NASA satellite data, a USGS gauge, drifting ocean floats, and species-occurrence records — free tools only, no trial accounts — built to ask what a genuinely merged dataset reveals about a warming lake and the ocean beside it. The two most promising-looking signals in it both turned out to be something other than what they first appeared.</p>
@@ -89,8 +90,8 @@
           <p class="scqa-label">Answer</p>
           <p>Two research threads, each pushed past the first plausible-looking result:</p>
           <ul style="color:var(--ink-soft); padding-left:20px; margin:0 0 16px;">
-            <li><b>Satellite temperature, checked against a gauge:</b> MODIS land-surface temperature for Lake Champlain, bit-decoded against its own QC band and validated against a USGS gauge reading. QC filtering caught the single catastrophic day outright — zero valid pixels, correctly refusing a confident wrong answer — but made 5 of the other 9 days worse, not better. On the two days still off by 3°C+ after filtering, every surviving pixel was already flagged at the satellite algorithm's own <i>best</i>-confidence tier, ruling out "filter harder" and pointing to a real physical effect: satellite skin temperature genuinely diverging from gauge bulk temperature, not a fixable data defect.</li>
-            <li><b>Species records, checked against ocean conditions:</b> Atlantic cod occurrence records jumped from 0 to 32 to 185 between 2024 and 2025, lining up suspiciously well with measured temperature and chlorophyll shifts — until breaking the records down by how each was collected showed almost the entire spike was <code>MATERIAL_SAMPLE</code> data, the signature of one research survey publishing to the database, not a change in the ocean. American lobster's records, by contrast, were 100% direct observation across all six years and showed no such artifact.</li>
+            <li><b>Satellite temperature, checked against a gauge:</b> MODIS land-surface temperature for Lake Champlain, bit-decoded against its own QC band and validated against a USGS gauge reading. QC filtering caught the single catastrophic day outright — zero valid pixels, correctly refusing a confident wrong answer — but made 5 of the other 9 days worse, not better. A Mincer-Zarnowitz regression of gauge on satellite puts a number on just how little the raw series tracks the truth: a slope of 0.04 (a perfect proxy scores 1.0) — satellite's day-to-day movement carries almost no information about the gauge's. On the two days still off by 3°C+ after filtering, every surviving pixel was already flagged at the satellite algorithm's own <i>best</i>-confidence tier, ruling out "filter harder" and pointing to a real physical effect: satellite skin temperature genuinely diverging from gauge bulk temperature, not a fixable data defect.</li>
+            <li><b>Species records, checked against ocean conditions:</b> Atlantic cod occurrence records jumped from 0 to 32 to 185 between 2024 and 2025, lining up suspiciously well with measured temperature and chlorophyll shifts — until breaking the records down by how each was collected showed almost the entire spike was <code>MATERIAL_SAMPLE</code> data, the signature of one research survey publishing to the database, not a change in the ocean. A formal dispersion test confirms it with a number no stable reporting process produces: a variance-to-mean ratio of 149 for the full series, versus almost exactly 1.0 — textbook Poisson — once the artifact records are excluded. American lobster's records, by contrast, were 100% direct observation across all six years, with no such artifact.</li>
           </ul>
           <div class="callout">
             <b>Neither hypothesis held up — and that was the actual finding.</b> A pipeline built to confirm the hopeful story would have reported "QC filtering fixed it" and "cod are tracking warming water," then stopped. Checking each claim against an independent source instead turned two expected one-line results into two real, defensible findings about exactly where — and why — each data source can and can't be trusted. Before treating either as final, both were also checked against real peer-reviewed literature spanning ocean remote sensing, marine carbon cycling, and microbial ecology — not to replicate any of it, but to see whether the same shape of caution shows up independently elsewhere. It did, twice.
@@ -114,11 +115,20 @@
         <p class="feed-caption">Not every source needed a caveat. Three independent drifting floats — free, no account, oceanography's own gold standard — show a clean, physically sensible seasonal warming signature with no correction required.</p>
       </div>
 
+      <div class="feed">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 04 — THE SIGNIFICANT RESULT THAT WASN'T</div>
+        <div class="feed-frame bracket-live">
+          <img src="../assets/images/thermalscout-se.jpg" alt="Forest plot comparing the same Argo panel trend estimates under two standard error methods: narrow HC1 error bars that appear statistically significant, versus wider float-clustered error bars that clearly span zero and are not significant" />
+        </div>
+        <p class="feed-caption">The floats also carry genuine panel structure — 48 floats, six years — built specifically to test whether a naive pooled trend hides compositional bias from which floats happened to be sampling which years. A first pass used standard errors that assume independent readings and reported a statistically significant cooling trend once float effects were added. Repeated readings from the same float aren't independent, though — reclustered correctly, that significance disappears completely (same dot, honest whiskers). Caught by re-deriving the regression a second way, not by re-reading the first one, and left visible here rather than quietly fixed.</p>
+      </div>
+
       <p class="eyebrow" style="margin-top:12px;">Built with</p>
       <div class="tech-list">
         <span class="skill-chip">earthaccess</span>
         <span class="skill-chip">argopy</span>
         <span class="skill-chip">xarray / GDAL</span>
+        <span class="skill-chip">statsmodels</span>
         <span class="skill-chip">NASA · USGS · GBIF APIs</span>
       </div>
     </div>
