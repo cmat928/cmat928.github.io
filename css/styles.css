@@ -463,6 +463,32 @@ section { padding: 72px 0; }
 
 .tech-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
 
+/* Per-company KPI comparison grid -- one compact card per company for
+   intuitive side-by-side scanning, built from the same tokens as
+   .stat-box/.pcard rather than a new visual language. */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+.kpi-card {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  padding: 14px 16px;
+  transition: transform .15s, border-color .15s;
+}
+.kpi-card:hover { transform: translateY(-2px); border-color: var(--teal); }
+.kpi-card-top { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed var(--rule-strong); }
+.kpi-ticker { font-family: var(--font-mono); font-weight: 600; font-size: 14px; color: var(--ink); }
+.kpi-name { font-size: 12.5px; color: var(--ink-faint); }
+.kpi-metrics { display: flex; flex-direction: column; gap: 7px; }
+.kpi-metric { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.kpi-metric-label { font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-faint); }
+.kpi-metric-value { font-family: var(--font-mono); font-size: 14px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.kpi-metric-value.flag-rust { color: var(--rust-ink); }
+.kpi-metric-value.flag-teal { color: var(--teal-ink); }
+
 /* ============================================================
    Intelligence feed — screenshot galleries
    ============================================================ */

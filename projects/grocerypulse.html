@@ -91,6 +91,7 @@
           <ul style="color:var(--ink-soft); padding-left:20px; margin:0 0 16px;">
             <li><b>Every control group was confound-checked against live SEC full-text search, not assumed clean.</b> Testing Kroger's automated-fulfillment bet meant excluding Walmart from the control group — Walmart was running its own competing automation investment in the same window. Testing Albertsons' retail-media launch meant excluding <i>both</i> Kroger <i>and</i> Walmart, since both already had a mature retail-media business years before Albertsons' launch — a confound a less careful design would have missed entirely.</li>
             <li><b>The headline finding required no regression at all.</b> Kroger's own most recent 10-K states, in a dedicated footnote, that its automated fulfillment network with Ocado "did not meet operational or financial expectations" — a $2.5 billion impairment charge, including roughly $350 million paid to Ocado just to exit the relationship on closed facilities. The event-study analysis around it is honestly inconclusive on its own (the pre-trend isn't clean, most likely from anticipation effects around the original 2018 announcement) — reported as a real limitation, not smoothed into a false clean story.</li>
+            <li><b>A follow-up pass through the cash flow statement sharpened that finding.</b> In the same fiscal year, Kroger still paid out $3.58 billion in dividends and buybacks — nearly matching its own $3.86 billion CapEx budget. Its "reinvestment ratio" (the share of CapEx plus shareholder returns that actually went to CapEx) was 51.8%, among the lowest of the 10 companies studied. Albertsons shows a related pattern from a different angle: the most leveraged balance sheet in the group (93.1% liabilities-to-assets) while still running its own $1.8 billion capital-return program. Neither fact proves the capital allocation caused or should have offset the strategic outcome — but both are real, disclosed, and go directly to whether spending matched stated priorities.</li>
           </ul>
           <div class="callout">
             <b>A placebo test validated the method before trusting it on the real questions.</b> Splitting the same 10 companies on an economically meaningless axis (alphabetical ticker order) and running the identical event-study code against COVID-19 correctly found nothing — no spurious pattern, no false "effect." Only after the machinery proved it wouldn't manufacture a finding out of noise was it trusted on the four real strategic bets. Two real data bugs surfaced and were fixed the same way along the way: an SEC financial-statement tag assumed universal across all 10 companies wasn't (one company used a different one entirely), and SEC's own period-labeling field turned out to silently misattribute years of financial history unless cross-checked against each filing's actual reporting dates.
@@ -112,6 +113,104 @@
           <img src="../assets/images/grocerypulse-placebo.jpg" alt="Event-study chart using an economically meaningless alphabetical split of the same 10 companies around the COVID-19 shock, showing flat, insignificant coefficients throughout" />
         </div>
         <p class="feed-caption">Same event-study code, same 10 companies, split alphabetically by ticker instead of by any real strategic decision. No pattern — which is the correct result. A method that finds "effects" in a meaningless split would find them everywhere.</p>
+      </div>
+
+      <div class="feed">
+        <div class="feed-label"><span class="pulse-dot"></span> FEED 04 — TEN COMPANIES, SIDE BY SIDE</div>
+        <p class="feed-caption" style="margin-top:0 0 12px;">A follow-up pass through the cash flow and balance sheet statements — not just the income statement — for a genuinely per-company view. Two figures are flagged directly on the cards: <b>reinvestment ratio</b> (the share of CapEx + dividends + buybacks that actually went to CapEx, not back to shareholders) and <b>liabilities/assets</b> (balance-sheet leverage, broader than long-term debt alone). Kroger and Albertsons stand out on both, in the same direction.</p>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-card-top"><span class="kpi-ticker">SFM</span><span class="kpi-name">Sprouts</span></div>
+            <div class="kpi-metrics">
+              <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">7.8%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">ROE</span><span class="kpi-metric-value">37.3%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">34.5%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">66.3%</span></div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-top"><span class="kpi-ticker">TGT</span><span class="kpi-name">Target</span></div>
+            <div class="kpi-metrics">
+              <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">4.9%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">ROE</span><span class="kpi-metric-value">22.9%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">60.2%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">72.8%</span></div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-top"><span class="kpi-ticker">NGVC</span><span class="kpi-name">Natural Grocers</span></div>
+            <div class="kpi-metrics">
+              <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">4.7%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">ROE</span><span class="kpi-metric-value">21.9%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">73.9%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">68.3%</span></div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-top"><span class="kpi-ticker">WMT</span><span class="kpi-name">Walmart</span></div>
+            <div class="kpi-metrics">
+              <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">4.2%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">ROE</span><span class="kpi-metric-value">22.0%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">63.1%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">65.0%</span></div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-top"><span class="kpi-ticker">COST</span><span class="kpi-name">Costco</span></div>
+            <div class="kpi-metrics">
+              <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">3.8%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">ROE</span><span class="kpi-metric-value">27.8%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">64.0%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">62.2%</span></div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-top"><span class="kpi-ticker">WMK</span><span class="kpi-name">Weis Markets</span></div>
+            <div class="kpi-metrics">
+              <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">2.3%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">ROE</span><span class="kpi-metric-value">6.9%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">53.6%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">33.3%</span></div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-top"><span class="kpi-ticker">IMKTA</span><span class="kpi-name">Ingles Markets</span></div>
+            <div class="kpi-metrics">
+              <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">2.2%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">ROE</span><span class="kpi-metric-value">5.2%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">90.3%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">37.0%</span></div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-top"><span class="kpi-ticker">KR</span><span class="kpi-name">Kroger</span></div>
+            <div class="kpi-metrics">
+              <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">1.3%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">ROE</span><span class="kpi-metric-value">17.1%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value flag-rust">51.8%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value flag-rust">88.1%</span></div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-top"><span class="kpi-ticker">ACI</span><span class="kpi-name">Albertsons</span></div>
+            <div class="kpi-metrics">
+              <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value">0.9%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">ROE</span><span class="kpi-metric-value">11.8%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value flag-rust">50.5%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value flag-rust">93.1%</span></div>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-card-top"><span class="kpi-ticker">GO</span><span class="kpi-name">Grocery Outlet</span></div>
+            <div class="kpi-metrics">
+              <div class="kpi-metric"><span class="kpi-metric-label">Op. Margin</span><span class="kpi-metric-value flag-rust">-4.7%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">ROE</span><span class="kpi-metric-value flag-rust">-22.9%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Reinvest %</span><span class="kpi-metric-value">100.0%</span></div>
+              <div class="kpi-metric"><span class="kpi-metric-label">Liab/Assets</span><span class="kpi-metric-value">68.2%</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="feed-caption">All 10 companies, latest fiscal year. Full derivation — including which XBRL tag was used for each figure and why — is in the project's own methodology appendix, not just asserted here.</p>
       </div>
 
       <p class="eyebrow" style="margin-top:12px;">Built with</p>
