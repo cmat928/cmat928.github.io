@@ -249,6 +249,7 @@
         <span><span class="sankey-swatch" style="background:var(--teal);"></span>Carried forward</span>
         <span><span class="sankey-swatch" style="background:var(--rust);"></span>Leaves the business</span>
       </div>
+      <div class="sankey-legend-table" id="sankeyLegendTable"></div>
       <p class="sankey-note" id="sankeyNote"></p>
     </div>
   </div>
@@ -319,86 +320,112 @@
       return el;
     }
 
+    // A grocery income statement spans an extreme range in one pass --
+    // COGS alone is routinely >75% of revenue, while Net Income is a
+    // couple percent at most. Nesting every split inside the exact pixel
+    // range its parent occupied (a "true" single-scale Sankey) compounds
+    // that compression at each stage: by the third split there are only a
+    // few pixels left to divide at all. Instead, each of the 3 stages
+    // below gets its OWN full-height budget (its starting value = 100% of
+    // that stage's row), independently of how thin the previous stage's
+    // output looked -- three honestly-scaled flows in sequence, not one
+    // flow crushed by its own starting scale. A minimum band width still
+    // applies within each stage for the rare split that's extreme even at
+    // full-row scale (noted in the caption, not hidden).
+    function splitWithMin(total, v1, v2, minPx) {
+      if (total <= 2 * minPx) return [total / 2, total / 2];
+      var raw1 = total * v1 / (v1 + v2);
+      var raw2 = total - raw1;
+      if (raw1 < minPx) return [minPx, total - minPx];
+      if (raw2 < minPx) return [total - minPx, minPx];
+      return [raw1, raw2];
+    }
+
+    function legendRow(swatchColor, name, value) {
+      var row = document.createElement('div');
+      row.className = 'sankey-legend-item';
+      var sw = document.createElement('span');
+      sw.className = 'swatch';
+      sw.style.background = swatchColor;
+      var nm = document.createElement('span');
+      nm.className = 'name';
+      nm.textContent = name;
+      var val = document.createElement('span');
+      val.className = 'value';
+      val.textContent = fmtMoney(value);
+      row.appendChild(sw); row.appendChild(nm); row.appendChild(val);
+      return row;
+    }
+
     function renderSankey(ticker) {
       var d = INCOME_STATEMENTS[ticker];
       var svg = document.getElementById('sankeySvg');
       while (svg.firstChild) svg.removeChild(svg.firstChild);
+      var legend = document.getElementById('sankeyLegendTable');
+      legend.innerHTML = '';
 
       var cs = getComputedStyle(document.documentElement);
       var TEAL = cs.getPropertyValue('--teal').trim();
       var RUST = cs.getPropertyValue('--rust').trim();
-      var INK = cs.getPropertyValue('--ink').trim();
-      var INK_SOFT = cs.getPropertyValue('--ink-soft').trim();
+      var STROKE = cs.getPropertyValue('--paper-raised').trim();
+      var INK_FAINT = cs.getPropertyValue('--ink-faint').trim();
 
-      var W = 860, nodeW = 16, padY = 22;
-      var numCols = d.loss ? 2 : 4;
-      var H = d.loss ? 190 : 340;
-      var usableH = H - 2 * padY;
-      var scale = usableH / d.revenue;
-      var colGap = (W - nodeW) / (numCols - 1);
-      var colX = [];
-      for (var i = 0; i < numCols; i++) colX.push(i * colGap);
+      var W = 860, nodeW = 22, MIN_BAND = 16;
+      var leftX = 0, rightX = W - nodeW;
+      var stages = d.loss
+        ? [{ label: 'Revenue → Gross Profit', parent: d.revenue, a: d.cogs, aName: 'COGS', b: d.grossProfit, bName: 'Gross Profit' }]
+        : [
+            { label: 'Revenue → Gross Profit', parent: d.revenue, a: d.cogs, aName: 'COGS', b: d.grossProfit, bName: 'Gross Profit' },
+            { label: 'Gross Profit → Operating Income', parent: d.grossProfit, a: d.operatingCosts, aName: 'Operating Costs', b: d.operatingIncome, bName: 'Operating Income' },
+            { label: 'Operating Income → Net Income', parent: d.operatingIncome, a: d.taxesInterestOther, aName: 'Taxes, Interest & Other', b: d.netIncome, bName: 'Net Income' },
+          ];
 
+      var rowH = 108, rowGap = 30, topPad = 18;
+      var H = topPad + stages.length * rowH + (stages.length - 1) * rowGap + 8;
       svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
 
-      function label(x, y, name, value, color) {
-        var t1 = svgEl('text', { x: x, y: y - 18, 'font-family': 'IBM Plex Mono, monospace', 'font-size': '11.5', 'font-weight': '600', fill: INK });
-        t1.textContent = name;
-        svg.appendChild(t1);
-        var t2 = svgEl('text', { x: x, y: y - 5, 'font-family': 'IBM Plex Mono, monospace', 'font-size': '11', fill: color });
-        t2.textContent = fmtMoney(value);
-        svg.appendChild(t2);
-      }
-
       function ribbon(x1, y1a, y1b, x2, y2a, y2b, color) {
-        svg.appendChild(svgEl('path', { d: sankeyRibbonPath(x1, y1a, y1b, x2, y2a, y2b), fill: color, opacity: '0.32' }));
+        svg.appendChild(svgEl('path', { d: sankeyRibbonPath(x1, y1a, y1b, x2, y2a, y2b), fill: color, opacity: '0.20' }));
       }
-
       function rect(x, y, h, color) {
-        svg.appendChild(svgEl('rect', { x: x, y: y, width: nodeW, height: Math.max(h, 1.5), fill: color }));
+        svg.appendChild(svgEl('rect', { x: x, y: y, width: nodeW, height: Math.max(h, 1), fill: color, stroke: STROKE, 'stroke-width': '1.5' }));
+      }
+      function stageLabel(x, y, text) {
+        var el = svgEl('text', { x: x, y: y, 'font-family': 'IBM Plex Mono, monospace', 'font-size': '11', fill: INK_FAINT });
+        el.textContent = text;
+        svg.appendChild(el);
       }
 
-      // Column 0: Revenue (full height)
-      var revTop = padY, revBot = padY + d.revenue * scale;
-      rect(colX[0], revTop, revBot - revTop, TEAL);
-      label(colX[0], revTop + padY * 0.6, 'Revenue', d.revenue, INK_SOFT);
+      stages.forEach(function (s, i) {
+        var top = topPad + i * (rowH + rowGap);
+        var bot = top + rowH;
+        stageLabel(leftX, top - 6, s.label);
 
-      // Column 1: COGS (top) + Gross Profit (bottom)
-      var cogsTop = revTop, cogsBot = revTop + d.cogs * scale;
-      var gpTop = cogsBot, gpBot = revBot;
-      rect(colX[1], cogsTop, cogsBot - cogsTop, RUST);
-      rect(colX[1], gpTop, gpBot - gpTop, TEAL);
-      ribbon(colX[0] + nodeW, revTop, cogsBot, colX[1], cogsTop, cogsBot, RUST);
-      ribbon(colX[0] + nodeW, cogsBot, revBot, colX[1], gpTop, gpBot, TEAL);
-      label(colX[1], cogsTop + Math.max((cogsBot - cogsTop) * 0.5, 14), 'COGS', d.cogs, INK_SOFT);
-      label(colX[1], gpBot, 'Gross Profit', d.grossProfit, INK_SOFT);
+        // Parent node (left): full row height = 100% of this stage's own value.
+        // Only stage 0's parent (Revenue) gets its own legend row -- every
+        // later stage's parent is the same figure as the previous stage's
+        // "kept" output and was already listed there.
+        rect(leftX, top, rowH, TEAL);
+        if (i === 0) legend.appendChild(legendRow(TEAL, 'Revenue', s.parent));
+
+        // Split into [a (leaves), b (kept)] on the right, scaled to this row only
+        var split = splitWithMin(rowH, s.a, s.b, MIN_BAND);
+        var aTop = top, aBot = top + split[0];
+        var bTop = aBot, bBot = bot;
+        rect(rightX, aTop, aBot - aTop, RUST);
+        rect(rightX, bTop, bBot - bTop, TEAL);
+        ribbon(leftX + nodeW, top, aBot, rightX, aTop, aBot, RUST);
+        ribbon(leftX + nodeW, aBot, bot, rightX, bTop, bBot, TEAL);
+        legend.appendChild(legendRow(RUST, s.aName, s.a));
+        legend.appendChild(legendRow(TEAL, s.bName, s.b));
+      });
 
       if (d.loss) {
         document.getElementById('sankeyNote').innerHTML = '<div class="sankey-loss-box"><b>Stops here — ' + d.name + ' recorded an operating loss this year.</b> ' + d.note + '</div>';
         return;
       }
       document.getElementById('sankeyNote').textContent = d.note ||
-        '"Operating Costs" and "Taxes, Interest & Other" are residuals (Gross Profit − Operating Income, and Operating Income − Net Income) so every flow balances exactly -- see the project methodology for why a raw SG&A tag alone can\'t be trusted to do that across all 10 companies.';
-
-      // Column 2: Operating Costs (top of GP slice) + Operating Income (bottom of GP slice)
-      var ocTop = gpTop, ocBot = gpTop + d.operatingCosts * scale;
-      var oiTop = ocBot, oiBot = gpBot;
-      rect(colX[2], ocTop, ocBot - ocTop, RUST);
-      rect(colX[2], oiTop, oiBot - oiTop, TEAL);
-      ribbon(colX[1] + nodeW, gpTop, ocBot, colX[2], ocTop, ocBot, RUST);
-      ribbon(colX[1] + nodeW, ocBot, gpBot, colX[2], oiTop, oiBot, TEAL);
-      label(colX[2], ocTop + Math.max((ocBot - ocTop) * 0.5, 14), 'Operating Costs', d.operatingCosts, INK_SOFT);
-      label(colX[2], oiBot, 'Operating Income', d.operatingIncome, INK_SOFT);
-
-      // Column 3: Taxes/Interest/Other (top of OI slice) + Net Income (bottom of OI slice)
-      var tioTop = oiTop, tioBot = oiTop + d.taxesInterestOther * scale;
-      var niTop = tioBot, niBot = oiBot;
-      rect(colX[3], tioTop, tioBot - tioTop, RUST);
-      rect(colX[3], niTop, niBot - niTop, TEAL);
-      ribbon(colX[2] + nodeW, oiTop, tioBot, colX[3], tioTop, tioBot, RUST);
-      ribbon(colX[2] + nodeW, tioBot, oiBot, colX[3], niTop, niBot, TEAL);
-      label(colX[3] - 90, tioTop + Math.max((tioBot - tioTop) * 0.5, 14), 'Taxes, Interest & Other', d.taxesInterestOther, INK_SOFT);
-      label(colX[3] - 90, niBot, 'Net Income', d.netIncome, INK_SOFT);
+        '"Operating Costs" and "Taxes, Interest & Other" are residuals (Gross Profit − Operating Income, and Operating Income − Net Income) so every flow balances exactly -- see the project methodology for why a raw SG&A tag alone can\'t be trusted to do that across all 10 companies. Each stage is scaled to its own starting value (100% = the number on the left of that row), not to total revenue -- otherwise Operating Income and Net Income would be too thin to show at all. The labeled dollar figures are exact regardless of how each row is drawn.';
     }
 
     function openSankey(ticker) {
